@@ -1,0 +1,22 @@
+{
+    "name": "stephenjcorwin/silverstripe-colors",
+    "description": "SilverStripe module which provides a [Color] DataObject and a Settings->Appearance->Colors menu for managing your website's Colors.",
+    "keywords": [
+        "silverstripe",
+        "color"
+    ],
+    "type": "silverstripe-module",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Stephen Corwin",
+            "email": "stephenjcorwin@gmail.com",
+            "homepage": "http://stephenjcorwin.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "silverstripe/cms": ">=3.1.0"
+    }
+}

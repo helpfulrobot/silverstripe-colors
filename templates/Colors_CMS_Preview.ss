@@ -1,0 +1,1 @@
+<div class="colors-cms-preview" style="background-color: $Value;"></div>
