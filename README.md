@@ -125,7 +125,7 @@ Code Examples
 	</head>
 		<body
 			class="
-				<% if $MyColor %>$MyColor.CSSClass %>
+				<% if $MyColor %>$MyColor.CSSClass<% end_if %>
 			"
 		>
 			$Layout
