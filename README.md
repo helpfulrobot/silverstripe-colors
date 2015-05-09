@@ -1,60 +1,138 @@
 silverstripe-colors
 =======================================
 
-Description
+Introduction
 ---------------------------------------
-SilverStripe module which provides a [Color] DataObject and a Settings->Appearance->Colors menu for managing your website's Colors.
+SilverStripe module which provide a `Color` DataObject and a `Settings->Appearance->Colors` Menu for managing your website's Colors.
 
-Usage
+Maintainer Contact
 ---------------------------------------
-```
-<?php
-class MyDataObject extends DataObject {
-    static $has_one = array (
-        'MyColor' => 'Color'
-    );
-
-	public function getCMSFields() {
-	    $fields = parent::getCMSFields();
-
-        /*
-        *   MAIN TAB
-        */
-
-	    $tab = 'Root.Main';
-        
-        //provides listbox field for selecting a predefined colors
-	    $data = DataObject::get('Color');
-	    $field = new ListboxField('MyColorID', 'My Color');
-	    $field->setSource($data->map('ID', 'Name')->toArray());
-	    $field->setEmptyString('Select one');
-	    $fields->addFieldToTab($tab, $field);
-        
-        return $fields;
-	}
-}
-```
-
-Install
+-   Stephen Corwin - <stephenjcorwin@gmail.com>
+   
+Requirements
 ---------------------------------------
-####Command Line:
-```
-composer require stephenjcorwin/silverstripe-colors
-```
+-   SilverStripe 3.1
 
-####Address Bar:
-```
-localhost/dev/build
-```
+Features
+---------------------------------------
+-   Create and maintain sitewide Colors
+-   Generate and reference database driven CSS classes
+
+Installation
+---------------------------------------
+Installation can be done either by composer or by manually downloading a release.
+
+####Via Composer:
+`composer require stephenjcorwin/silverstripe-colors`
+
+####Manually:
+1.   Download the module from [the releases page](https://github.com/stephenjcorwin/silverstripe-colors/releases)
+2.   Extract the file
+3.   Make sure the folder after being extracted is name 'silverstripe-colors'
+4.   Place this directory in your site's root directory
+
+####Configuration:
+-   After installation, make sure you rebuild your database through `dev/build`
+-	You should see the a new Menu in the CMS for managing `Colors` available through the Menu `Settings->Appearance->Colors`
 
 Uninstall
 ---------------------------------------
-####Command Line:
-```
-composer remove stephenjcorwin/silverstripe-colors
-```
+####Via Composer:
+`composer remove stephenjcorwin/silverstripe-colors`
 
-####Address Bar:
-```
-localhost/dev/build
-```
+####Manually:
+1.   Remove the `silverstripe-colors` directory in your site's root directory
+
+####Configuration:
+-   After uninstalling, make sure you rebuild your database through `dev/build`
+
+Code Examples
+---------------------------------------
+####Defining a `has_one` relationship with `Color`:
+
+####`mysite/code/MyDataObject.php`
+    <?php
+    class MyDataObject extends DataObject {
+        static $has_one = array (
+            'MyColor' => 'Color',
+        );
+    
+        public function getCMSFields() {
+            $fields = parent::getCMSFields();
+    
+            /*
+            *   MAIN TAB
+            */
+    
+            $tab = 'Root.Main';
+            
+            //provides listbox field menu for selecting a predefined Color
+            $data = DataObject::get('Color');
+            $field = new ListboxField('MyColorID', 'My Color');
+    	    $field->setSource($data->map('ID', 'Name')->toArray());
+    	    $field->setEmptyString('Select one');
+    	    $fields->addFieldToTab($tab, $field);
+    
+            return $fields;
+    	}
+    }
+
+####Using database generated classes for styling:
+
+####`mysite/code/Page.php`
+    <?php
+    class Page extends SiteTree {
+    	private static $has_one = array(
+    		'MyColor' => 'Color'
+		);
+
+		public function getCMSFields() {
+            $fields = parent::getCMSFields();
+    
+            /*
+            *   MAIN TAB
+            */
+    
+            $tab = 'Root.Main';
+            
+            //provides listbox field menu for selecting a predefined Color
+            $data = DataObject::get('Color');
+            $field = new ListboxField('MyColorID', 'My Color');
+    	    $field->setSource($data->map('ID', 'Name')->toArray());
+    	    $field->setEmptyString('Select one');
+    	    $fields->addFieldToTab($tab, $field);
+    
+            return $fields;
+    	}
+    }
+
+    class Page_Controller extends ContentController {
+    	public function init() {
+			parent::init();
+		}
+
+    	public function getColors() {
+			$data = DataObject::get('Color');
+			return $data;
+		}
+    }
+
+####`themes/themes/mytheme/templates/Page.ss`
+    <!DOCTYPE html>
+	<html lang="$ContentLocale">
+	<head>
+		<% include Style %>
+	</head>
+		<body
+			class="
+				<% if $MyColor %>$MyColor.CSSClass %>
+			"
+		>
+			$Layout
+		</body>
+	</html>
+
+####`themes/themes/mytheme/templates/Includes/Style.ss`
+    <style>
+		<% include Color_Style Data=$Colors %>
+	</style>
