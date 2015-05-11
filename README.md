@@ -134,5 +134,5 @@ Code Examples
 
 ####`themes/themes/mytheme/templates/Includes/Style.ss`
     <style>
-		<% include Color_Style Data=$Colors %>
+		<% with $Colors %><% include Color_Style %><% end_with %>
 	</style>

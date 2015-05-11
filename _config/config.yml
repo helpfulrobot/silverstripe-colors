@@ -1,0 +1,10 @@
+---
+Name: silverstripe-colors
+---
+SiteConfig:
+  extensions:
+    - Colors_SiteConfigExtension
+
+LeftAndMain:
+  extra_requirements_css:
+    - silverstripe-colors/css/cms/min.css
