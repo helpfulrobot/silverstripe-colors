@@ -14,9 +14,15 @@ Requirements
 -   SilverStripe 3.1
 -   [stephenjcorwin/silverstripe-style-sheet](https://github.com/stephenjcorwin/silverstripe-style-sheet)
 
+Related
+---------------------------------------
+-   [stephenjcorwin/silverstripe-icons](https://github.com/stephenjcorwin/silverstripe-icons/)
+-   [stephenjcorwin/silverstripe-opacities](https://github.com/stephenjcorwin/silverstripe-opacities/)
+-   [stephenjcorwin/silverstripe-text](https://github.com/stephenjcorwin/silverstripe-text/)
+
 Features
 ---------------------------------------
--   Create and maintain sitewide Colors
+-   Create and maintain sitewide `Colors`
 -   Generate and reference database driven CSS classes
 
 Installation
@@ -29,7 +35,7 @@ Installation can be done either by composer or by manually downloading a release
 ####Manually:
 1.   Download the module from [the releases page](https://github.com/stephenjcorwin/silverstripe-colors/releases)
 2.   Extract the file
-3.   Make sure the folder after being extracted is name 'silverstripe-colors'
+3.   Make sure the folder after being extracted is name `silverstripe-colors`
 4.   Place this directory in your site's root directory
 
 ####Configuration:
