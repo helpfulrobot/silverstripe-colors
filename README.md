@@ -12,6 +12,7 @@ Maintainer Contact
 Requirements
 ---------------------------------------
 -   SilverStripe 3.1
+-   [stephenjcorwin/silverstripe-style-sheet](https://github.com/stephenjcorwin/silverstripe-style-sheet)
 
 Features
 ---------------------------------------
@@ -33,7 +34,7 @@ Installation can be done either by composer or by manually downloading a release
 
 ####Configuration:
 -   After installation, make sure you rebuild your database through `dev/build`
--	You should see the a new Menu in the CMS for managing `Colors` available through the Menu `Settings->Appearance->Colors`
+-	You should see the a new Menu in the CMS for managing `Colors` available through the `Settings->Appearance->Colors` Menu
 
 Uninstall
 ---------------------------------------
@@ -53,7 +54,7 @@ Code Examples
 ####`mysite/code/MyDataObject.php`
     <?php
     class MyDataObject extends DataObject {
-        static $has_one = array (
+        private static $has_one = array (
             'MyColor' => 'Color',
         );
     
@@ -110,19 +111,11 @@ Code Examples
     	public function init() {
 			parent::init();
 		}
-
-    	public function getColors() {
-			$data = DataObject::get('Color');
-			return $data;
-		}
     }
 
-####`themes/themes/mytheme/templates/Page.ss`
+####`themes/mytheme/templates/Page.ss`
     <!DOCTYPE html>
-	<html lang="$ContentLocale">
-	<head>
-		<% include Style %>
-	</head>
+	<html>
 		<body
 			class="
 				<% if $MyColor %>$MyColor.CSSClass<% end_if %>
@@ -131,8 +124,3 @@ Code Examples
 			$Layout
 		</body>
 	</html>
-
-####`themes/themes/mytheme/templates/Includes/Style.ss`
-    <style>
-		<% with $Colors %><% include Color_Style %><% end_with %>
-	</style>

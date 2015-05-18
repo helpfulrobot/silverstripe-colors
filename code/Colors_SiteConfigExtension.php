@@ -1,13 +1,13 @@
 <?php
 class Colors_SiteConfigExtension extends DataExtension {
   /**
-    CMS FIELDS
-  **/
+   * CMS FIELDS
+   */
 
   public function updateCMSFields(FieldList $fields) {    
-    /*
-      APPEARANCE TAB
-    */
+    /**
+     * APPEARANCE TAB
+     */
 
     $tab = 'Root.Appearance.Colors';
     

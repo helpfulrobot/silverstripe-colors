@@ -1,22 +1,17 @@
 <?php
-class Color extends DataObject {
+class Color extends StyleObject {
   /**
-    FIELDS
-  **/
+   * FIELDS
+  */
 
   private static $db = array (
     'Name' => 'Text',
     'Value' => 'Text'
   );
-
-  private static $defaults = array (
-  );
-
-  private static $default_sort='Name ASC';
-
+  
   /**
-    DEFAULT RECORDS
-  **/
+   * DEFAULT RECORDS
+   */
 
   private static $default_records = array (
     array (
@@ -50,28 +45,10 @@ class Color extends DataObject {
   );
 
   /**
-    PERMISSIONS
-  **/
+   * CONFIGURATION
+   */
 
-  public function canEdit($member = NULL) {
-    return true;
-  }
-
-  public function canDelete($member = NULL) {
-    return true;
-  }
-
-  public function canCreate($member = NULL){
-    return true;
-  }
-
-  public function canPublish($member = NULL){
-    return true;
-  }
-
-  public function canView($member = NULL){
-    return true;
-  }
+  private static $default_sort='Name ASC';
 
   private static $summary_fields = array (    
     'Name' => 'Name',
@@ -80,15 +57,15 @@ class Color extends DataObject {
   );
 
   /**
-    CMS FIELDS
-  **/
+   * CMS FIELDS
+   */
 
   public function getCMSFields() {
     $fields = parent::getCMSFields();
     
-    /*
-      MAIN TAB
-    */
+    /**
+     * MAIN TAB
+     */
 
     $tab = 'Root.Main';
 
@@ -110,17 +87,5 @@ class Color extends DataObject {
     $obj = HTMLText::create();
     $obj->setValue($html);
     return $obj;
-  }
-
-  public function CSSClass($prefix=0) {
-    $name = strtolower($this->ClassName);
-    
-    if ($prefix) {
-      $name = $prefix . '-' . $name;
-    }
-
-    $id = $this->ID;
-    $data = $name . '-' . $id;
-    return $data;
   }
 }
