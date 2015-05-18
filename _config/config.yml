@@ -3,7 +3,7 @@ Name: silverstripe-colors
 ---
 SiteConfig:
   extensions:
-    - Colors_SiteConfigExtension
+    - Color_SiteConfigExtension
 
 LeftAndMain:
   extra_requirements_css:

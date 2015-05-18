@@ -1,5 +1,5 @@
 <?php
-class Colors_SiteConfigExtension extends DataExtension {
+class Color_SiteConfigExtension extends DataExtension {
   /**
    * CMS FIELDS
    */

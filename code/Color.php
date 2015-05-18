@@ -75,7 +75,7 @@ class Color extends StyleObject {
     $field = new TextField('Value');
     $fields->addFieldToTab($tab, $field);
 
-    $html = ViewableData::renderWith('Colors_CMS_Preview');
+    $html = ViewableData::renderWith('Color_CMS_Preview');
     $field = new LiteralField('Preview', $html);
     $fields->addFieldToTab($tab, $field);
     
@@ -83,7 +83,7 @@ class Color extends StyleObject {
   }
 
   public function getCMSPreview() {
-    $html = ViewableData::renderWith('Colors_CMS_Preview');
+    $html = ViewableData::renderWith('Color_CMS_Preview');
     $obj = HTMLText::create();
     $obj->setValue($html);
     return $obj;
